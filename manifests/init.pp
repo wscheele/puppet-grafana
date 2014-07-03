@@ -28,8 +28,8 @@ class grafana (
   # implementation classes through a transitive relationship to
   # the composite class.
   # https://projects.puppetlabs.com/projects/puppet/wiki/Anchor_Pattern
-  anchor { 'graphite::begin':}->
+  anchor { 'grafana::begin':}->
   class { $::grafana::install: }->
   class { $::grafana::config: }->
-  anchor { 'graphite::end':}
+  anchor { 'grafana::end':}
 }
