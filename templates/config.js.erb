@@ -17,14 +17,14 @@ function (Settings) {
         url: "http://<%= scope.lookupvar('grafana::graphite_host') %>:<%= scope.lookupvar('grafana::graphite_port') %>",
         default: true
       },
-    <% if scope.lookupvar('grafana::influxdb_host') != 'undef' -%>
+    <% if scope.lookupvar('grafana::influxdb_host') != '' -%>
       influxdb: {
         type: 'influxdb',
         url: "http:/<%= scope.lookupvar('grafana::influxdb_host') %>:<%= scope.lookupvar('grafana::influxdb_port') %><%= scope.lookupvar('grafana::influxdb_dbpath') %>",
         username: '<%= scope.lookupvar('grafana::influxdb_user') %>',
         password: '<%= scope.lookupvar('grafana::influxdb_pass') %>'
       },
-    <% end -%>
+    <% end %>
     },
 
     // elasticsearch url
@@ -32,7 +32,7 @@ function (Settings) {
     // For Basic authentication use: http://username:password@domain.com:9200
     //elasticsearch: "http://"+window.location.hostname+":9200",
 
-    <% if scope.lookupvar('grafana::elasticsearch_host') != 'undef' -%>
+    <% if scope.lookupvar('grafana::elasticsearch_host') != '' -%>
     elasticsearch: "http://<%= scope.lookupvar('grafana::elasticsearch_host') %>:<%= scope.lookupvar('grafana::elasticsearch_port') %>",
     <% end -%>
 
@@ -52,7 +52,7 @@ function (Settings) {
     // Example:
     //   If TIME_ZONE is set to UTC, set this to "0000"
     //
-    timezoneOffset: "<%= scope.lookupvar('grafana::timezone') %>"
+    timezoneOffset: "<%= scope.lookupvar('grafana::timezone_offset') %>"
 
     // set to false to disable unsaved changes warning
     unsaved_changes_warning: true,

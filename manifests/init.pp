@@ -12,14 +12,14 @@ class grafana (
   $install_dir        = '/opt',
   $graphite_host      = 'localhost',
   $graphite_port      = 80,
-  $elasticsearch_host = undef,
-  $elasticsearcg_port = 9200,
-  $influxdb_host      = undef,
+  $elasticsearch_host = '',
+  $elasticsearch_port = 9200,
+  $influxdb_host      = '',
   $influxdb_port      = 8086,
   $influxdb_dbpath    = '/db/grafana',
   $influxdb_user      = 'admin',
   $influxdb_pass      = 'admin',
-  $timezone           = '0000',
+  $timezone_offset    = '0000',
   $playlist_timespan  = '1m'
 ) {
 
@@ -28,8 +28,8 @@ class grafana (
   # implementation classes through a transitive relationship to
   # the composite class.
   # https://projects.puppetlabs.com/projects/puppet/wiki/Anchor_Pattern
-  anchor { 'grafana::begin':}->
-  class { $::grafana::install: }->
-  class { $::grafana::config: }->
-  anchor { 'grafana::end':}
+  anchor { 'grafana::begin': }->
+  class { 'grafana::install': }->
+  class { 'grafana::config': }->
+  anchor { 'grafana::end': }
 }
