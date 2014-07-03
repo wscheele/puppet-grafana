@@ -12,11 +12,13 @@ function (Settings) {
 
     // datasources, you can add multiple
     datasources: {
+    <% if scope.lookupvar('grafana::graphite_host') != '' -%>
       graphite: {
         type: 'graphite',
         url: "http://<%= scope.lookupvar('grafana::graphite_host') %>:<%= scope.lookupvar('grafana::graphite_port') %>",
         default: true
       },
+    <% end %>
     <% if scope.lookupvar('grafana::influxdb_host') != '' -%>
       influxdb: {
         type: 'influxdb',
