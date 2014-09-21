@@ -27,6 +27,14 @@ function (Settings) {
         password: '<%= scope.lookupvar('grafana::influxdb_pass') %>'
       },
     <% end %>
+    <% if scope.lookupvar('grafana::elasticsearch_host') != '' -%>
+      elasticsearch: {
+        type: 'elasticsearch',
+        url: "http://<%= scope.lookupvar('grafana::elasticsearch_host') %>:<%= scope.lookupvar('grafana::elasticsearch_port') %>",
+        index: 'grafana-dash',
+        grafanaDB: true,
+      },
+    <% end -%>
     },
 
     // elasticsearch url
